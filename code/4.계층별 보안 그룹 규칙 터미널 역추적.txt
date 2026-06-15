@@ -1,0 +1,5 @@
+# 1. 외부 인바운드가 열린 ALB 보안 그룹 규칙 필터링
+aws ec2 describe-security-groups --group-names ECS-NGINX-ALB-SG --query "SecurityGroups[*].IpPermissions"
+
+# 2. 프라이빗 내부망 격리가 적용된 WAS/DB 보안 그룹의 인바운드 허용 소스 주소 검증
+aws ec2 describe-security-groups --group-names ECS-CONTAINER-SG --query "SecurityGroups[*].IpPermissions[*].UserIdGroupPairs"

@@ -1,0 +1,2 @@
+# 양대 클라우드 인프라 아키텍처의 트래픽 전환율을 실시간 감시하는 한 줄 자동화 커맨드
+watch -n 1 "echo '=== 4RSENAL Global Infra Traffic Check ===' && nslookup www.rmsid.store && curl -I -s http://www.rmsid.store | grep -E 'HTTP/|Server:'"

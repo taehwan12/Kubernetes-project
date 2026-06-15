@@ -1,0 +1,10 @@
+# 1. 4RSENAL 클러스터 인프라 가동태 정보 조회
+aws ecs describe-clusters --clusters VEC-PRD-ECR-Cluster
+
+# 2. 실행 중인 가상 컨테이너 태스크 세트 세부 명세서(원하는 수: 2개 복제본) 확인
+aws ecs list-tasks --cluster VEC-PRD-ECR-Cluster --desired-status RUNNING
+
+# 3. 특정 가동 태스크의 실시간 자원 사용량 및 네트워크 바인딩 상태 확인
+aws ecs describe-tasks \
+  --cluster VEC-PRD-ECR-Cluster \
+  --tasks $(aws ecs list-tasks --cluster VEC-PRD-ECR-Cluster --query "taskArns[0]" --output text)

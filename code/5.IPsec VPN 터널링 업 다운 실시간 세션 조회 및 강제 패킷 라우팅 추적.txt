@@ -1,0 +1,10 @@
+# 1. AWS VGW 엔드포인트와 NCP VPN 게이트웨이 간의 터널 라이프사이클 통신 상태 조회
+aws ec2 describe-vpn-connections \
+  --filters "Name=state,Values=available" \
+  --query "VpnConnections[*].VgwasTelemetry"
+
+# 2. 이기종 클라우드 사설망 망결합 경로 도달 가능성 테스트 (AWS 인스턴스 -> NCP 내부 서버 IP)
+ping -c 5 192.168.10.50
+
+# 3. 네트워크 패킷의 라우팅 홉 경로 및 VPN 터널링 통신 구간 지연율 역추적 (MTR 가동)
+mtr --report --report-cycles=10 192.168.10.50

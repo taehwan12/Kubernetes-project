@@ -1,0 +1,9 @@
+# 1. 통합 볼륨 그룹(DATA) 및 논리 볼륨(VIDEO/AUDIO) 활성화 상태 확인
+vgdisplay DATA -v
+lvscan
+
+# 2. 파일 시스템 구조 분석 및 마운트 무결성 체크
+df -Th | grep -E 'video|audio'
+
+# 3. 디스크 쿼터 임계치(Soft 700MB / Hard 1GB) 초과 사용자 실시간 강제 탐지
+xfs_quota -x -c 'report -h' /media/user_storage
